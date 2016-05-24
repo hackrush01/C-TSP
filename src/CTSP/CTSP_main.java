@@ -11,7 +11,7 @@ public class CTSP_main {
 //        int popSize     = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Enter population size","Population",3,null,null,"100"));
         int noc = 280;     //Specific to WORKING PROJECT FILE
         int dist = 50;     //Specific to WORKING PROJECT FILE
-        int popSize = 1;   //Specific to WORKING PROJECT FILE
+        int popSize = 50;   //Specific to WORKING PROJECT FILE
 
         int[][] coorTable = new COORDINATE().coorArray(noc);
         float[][] distTable = new DIST().distArray(coorTable, noc);

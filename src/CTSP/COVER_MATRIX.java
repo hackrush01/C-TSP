@@ -39,8 +39,16 @@ class COVER_MATRIX {
                 }
             }
         }
+        switch (counter) {
+            case 1:
+                coverArray[i][1] = coverArray[i][2] = coverArray[i][0];
+                break;
+            case 2:
+                coverArray[i][2] = coverArray[i][(int) (Math.random() * 2)];
+                break;
+        }
 //        System.out.println();  // Debug only
-        PrintArr_Debug.printarr(coverArray, i);  // Debug only
+//        PrintArr_Debug.printarr(coverArray, i);  // Debug only
         return coverArray;
     } // End of function closestCity
 
