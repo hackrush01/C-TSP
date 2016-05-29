@@ -6,7 +6,7 @@ class POPULATION {
         int[][] popArray = new int[popSize][noc + 1];
 
         for (int i = 0; i < popSize; i++) {
-            int[] covered = new int[noc + 1];
+            int[] covered = new int[noc + 2];
 
             for (int j = 0; covered[0] < noc; j++) {
                 popArray[i][j] = (int) (Math.random() * noc);
@@ -41,7 +41,7 @@ class POPULATION {
     } // End of function popArrayRand
 
     public int[][] popArray3Closest(int popSize, int noc, int[][] coverArray, int dist, float[][] distArray) {
-        int[][] popArray = new int[popSize][noc + 1];
+        int[][] popArray = new int[popSize][noc + 2];
 
         for (int i = 0; i < popSize; i++) {     //filling popArray, iterating popArray
             int[] covered = new int[noc + 1];   // for checking uncovered and covered cities
