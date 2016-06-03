@@ -9,20 +9,29 @@ public class CTSP_main {
 //        int noc     = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Enter the no. of cities","No. of cities",3,null,null,"280"));
 //        int dist     = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Enter facility cover distance","Distance",3,null,null,"50"));
 //        int popSize     = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Enter population size","Population",3,null,null,"100"));
+//        float crossRate = Float.parseFloat((String) JOptionPane.showInputDialog(null, "Enter the crossover rate", "Crossover Rate", 3, null, null, 0.8));
         int noc = 280;     //Specific to WORKING PROJECT FILE
         int dist = 50;     //Specific to WORKING PROJECT FILE
-        int popSize = 50;   //Specific to WORKING PROJECT FILE
+        int popSize = 10;   //Specific to WORKING PROJECT FILE
 
-        int[][] coorTable = new COORDINATE().coorArray(noc);
+        int[][] coorTable   = new COORDINATE().coorArray(noc);
         float[][] distTable = new DIST().distArray(coorTable, noc);
 
 //        new WRITE().delFile();
-//        new WRITE().writeFile(distTable, noc);
-        int[][] coverTable = new COVER_MATRIX().coverArray(distTable, noc, dist);
-
-        int[][] popTable = new POPULATION().popArray3Closest(popSize, noc, coverTable, dist, distTable);
-        popTable = new FITNESS().calcFitness(popTable, distTable, noc, popSize);
+//        new WRITE().writeFile(distTable, noc);qwertyui
+        int[][] coverTable  = new COVER_MATRIX().coverArray(distTable, noc, dist);
+        
+        System.out.println("----------------------Initial Population----------------------");
+        int[][] popTable    = new POPULATION().popArray3Closest(popSize, noc, coverTable, dist, distTable);
+        popTable            = new FITNESS().calcFitness(popTable, distTable, noc, popSize);
+        
         int[][] selectTable = new SELECTION().select(popSize, noc, popTable);
+        
+        System.out.println();
+        System.out.println("----------------------Crossover Population----------------------");
+        int[][] crossTable  = new CROSSOVER().crossBest(selectTable, popTable, popSize, noc);  // 50% cross with best, rest random
+        crossTable          = new CROSSOVER().crossRandom(crossTable, popTable, selectTable, popSize, noc);
+        crossTable          = new FITNESS().calcFitness(crossTable, distTable, noc, popSize);  
     }
 
 }

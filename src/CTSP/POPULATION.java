@@ -3,10 +3,10 @@ package CTSP;
 class POPULATION {
 
     public int[][] popArrayRand(int popSize, int noc, int[][] coverArray) {
-        int[][] popArray = new int[popSize][noc + 1];
+        int[][] popArray = new int[popSize][noc + 2];
 
         for (int i = 0; i < popSize; i++) {
-            int[] covered = new int[noc + 2];
+            int[] covered = new int[noc + 1];
 
             for (int j = 0; covered[0] < noc; j++) {
                 popArray[i][j] = (int) (Math.random() * noc);
