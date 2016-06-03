@@ -5,7 +5,7 @@ import java.util.Random;
 class SELECTION {
 
     public int[][] select(int popSize, int noc, int[][] popArray) {   // Roulette selection
-        int[][] selectPool = new int[popSize][noc + 1];  // Init selectPool
+        int[][] selectPool = new int[popSize][noc + 2];  // Init selectPool
         long sum_fit = 0;  // sum of max-fitness
 
         for (int i = 0; i < popSize; i++) {   // Loop for adding max-fitness of 
@@ -25,11 +25,13 @@ class SELECTION {
             }
 //            System.out.print(index + " "+popArray[index][noc]+" "+popArray[index][noc+1]+" "); // Debug Only
 
-            for (int j = 0; j < noc + 1; j++) {     // Copying gene to selectPool
+            for (int j = 0; j < noc + 1; j++) {     // Copying gene and fitness@noc to selectPool
                 selectPool[i][j] = popArray[index][j];
 //                System.out.print(selectPool[i][j]+" "); // Debug Only
             }
-//            System.out.println(); // Debug Only
+            selectPool[i][noc + 1] = index; // Adding index of gene to the end for selection for crossing
+            System.out.print(selectPool[i][noc + 1]+" "); // Debug only
+            System.out.println(); // Debug Only
         }
 
         return selectPool;
