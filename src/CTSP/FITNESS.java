@@ -18,7 +18,7 @@ class FITNESS {
             }
 
             Array[i][noc] = (int) (sum); // to change decimal to int for storing in int type array(clever ;-) )
-            System.out.println(i + " " + Array[i][noc]); // Debug Only
+//            System.out.println(i + " " + Array[i][noc]); // Debug Only
         }
 
         for (int i = 0; i < popSize; i++) {   // For putting max-fitness, for roulette whel selection

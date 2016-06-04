@@ -18,7 +18,8 @@ public class CTSP_main {
         float[][] distTable = new DIST().distArray(coorTable, noc);
 
 //        new WRITE().delFile();
-//        new WRITE().writeFile(distTable, noc);qwertyui
+//        new WRITE().writeFile(distTable, noc);
+        
         int[][] coverTable  = new COVER_MATRIX().coverArray(distTable, noc, dist);
         
         System.out.println("----------------------Initial Population----------------------");

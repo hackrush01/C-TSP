@@ -29,7 +29,6 @@ class CROSSOVER {
         }
 
 //        System.out.println(bestGene_fit + " " + bestGene_index + " " + bestGene_length);    // Debug Only
-
         // funtion for crossing
         for (int i = 0; i < noOfGenes; i++) {
 
@@ -49,7 +48,6 @@ class CROSSOVER {
 
 //                System.out.println(parent2); // Debug Only
                 // </editor-fold>
-
                 // Calculating length of parent2 gene for crossover(will be done on the basis of smaller of two parents)
                 // <editor-fold>
                 for (int l = 0; popArray[parent2][l] != -1; l++) {
@@ -71,7 +69,7 @@ class CROSSOVER {
                 // Filling the crossPool till the crossPoint with bestGene 
                 for (; j < crossPoint; j++) {
                     crossPool[i][j] = popArray[bestGene_index][j];
-//                    System.out.print(crossPool[i][j] + " ");  // Debug Only
+                    System.out.print(crossPool[i][j] + " ");  // Debug Only  //Printing Pop
                 }
 
                 int crossPoolFillPoint = j; // crossPool will start to get filled from here
@@ -89,7 +87,7 @@ class CROSSOVER {
 
                     if (flag == 0) {    // However if flag is 0, the element(from parent2) is put in crossPool
                         crossPool[i][crossPoolFillPoint] = popArray[parent2][j];
-//                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only
+                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only // Printing Pop
                         crossPoolFillPoint++;       // Increasing cross fill point on successful insertion
                     }
                 }
@@ -100,7 +98,7 @@ class CROSSOVER {
                 // Filling the crossPool till the crossPoint with parent2 
                 for (; j < crossPoint; j++) {
                     crossPool[i][j] = popArray[parent2][j];
-//                    System.out.print(crossPool[i][j] + " ");  // Debug Only
+                    System.out.print(crossPool[i][j] + " ");  // Debug Only  // Printing Pop
                 }
 
                 int crossPoolFillPoint = j; // crossPool will start to get filled from here
@@ -118,13 +116,13 @@ class CROSSOVER {
 
                     if (flag == 0) {    // However if flag is 0, the element(from bestGene_index) is put in crossPool
                         crossPool[i][crossPoolFillPoint] = popArray[bestGene_index][j];
-//                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only
+                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only //Printing Pop
                         crossPoolFillPoint++;       // Increasing cross fill point on successful insertion
                     }
                 }
                 crossPool[i][crossPoolFillPoint] = -1;
             }
-//            System.out.println(); // Debug Only
+            System.out.println(); // Debug Only  // Printing Pop
         }
         return crossPool;
     } // End of function for creating crossPool from best genes;
@@ -158,13 +156,12 @@ class CROSSOVER {
 
 //                System.out.println(parent1 +" "+parent2); // Debug Only
                 // </editor-fold>
-
                 // Calculating length of parent2 gene for crossover(will be done on the basis of smaller of two parents)
                 // <editor-fold>
                 for (int l = 0; popArray[parent2][l] != -1; l++) {
                     parent2Gene_length = l;
                 }
-                
+
                 for (int l = 0; popArray[parent1][l] != -1; l++) {
                     parent1Gene_length = l;
                 }
@@ -184,7 +181,7 @@ class CROSSOVER {
                 // Filling the crossPool till the crossPoint with parent1 
                 for (; j < crossPoint; j++) {
                     crossPool[i][j] = popArray[parent1][j];
-//                    System.out.print(crossPool[i][j] + " ");  // Debug Only
+                    System.out.print(crossPool[i][j] + " ");  // Debug Only  // Printing Pop
                 }
 
                 int crossPoolFillPoint = j; // crossPool will start to get filled from here
@@ -202,7 +199,7 @@ class CROSSOVER {
 
                     if (flag == 0) {    // However if flag is 0, the element(from parent2) is put in crossPool
                         crossPool[i][crossPoolFillPoint] = popArray[parent2][j];
-//                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only
+                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only //Printing Pop
                         crossPoolFillPoint++;       // Increasing cross fill point on successful insertion
                     }
                 }
@@ -213,7 +210,7 @@ class CROSSOVER {
                 // Filling the crossPool till the crossPoint with parent2 
                 for (; j < crossPoint; j++) {
                     crossPool[i][j] = popArray[parent2][j];
-//                    System.out.print(crossPool[i][j] + " ");  // Debug Only
+                    System.out.print(crossPool[i][j] + " ");  // Debug Only  // Printing Pop
                 }
 
                 int crossPoolFillPoint = j; // crossPool will start to get filled from here
@@ -231,13 +228,13 @@ class CROSSOVER {
 
                     if (flag == 0) {    // However if flag is 0, the element(from parent1) is put in crossPool
                         crossPool[i][crossPoolFillPoint] = popArray[parent1][j];
-//                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only
+                        System.out.print(crossPool[i][crossPoolFillPoint] + " ");  // Debug Only // Printing Pop
                         crossPoolFillPoint++;       // Increasing cross fill point on successful insertion
                     }
                 }
                 crossPool[i][crossPoolFillPoint] = -1;
             }
-//            System.out.println(); // Debug Only
+            System.out.println(); // Debug Only // Printing Pop
         }
         return crossPool;
     }

@@ -30,8 +30,7 @@ class SELECTION {
 //                System.out.print(selectPool[i][j]+" "); // Debug Only
             }
             selectPool[i][noc + 1] = index; // Adding index of gene to the end for selection for crossing
-            System.out.print(selectPool[i][noc + 1]+" "); // Debug only
-            System.out.println(); // Debug Only
+//            System.out.println(selectPool[i][noc + 1]+" "); // Debug only
         }
 
         return selectPool;

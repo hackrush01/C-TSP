@@ -48,9 +48,9 @@ class POPULATION {
             int j = 1;  // To make it available to this loop
             popArray[i][0] = (int) (Math.random() * noc);   // Depot, 2014 Research paper
 
-            for (int k = 3; coverArray[popArray[i][0]][k] != -1; k++) {     // Filling covered array, k=3 as coverArray starts from 3
-                covered[coverArray[popArray[i][0]][k] + 1]++;                 // coverArray is index based, so +1 to convert
-                if (covered[coverArray[popArray[i][0]][k] + 1] == 1) {        // to number for "covered[]" (number based)
+            for (int k = 3; coverArray[popArray[i][0]][k] != -1; k++) {     //* Filling covered array, k=3 as coverArray starts from 3 *//
+                covered[coverArray[popArray[i][0]][k] + 1]++;               //* coverArray is index based, so +1 to convert            *//
+                if (covered[coverArray[popArray[i][0]][k] + 1] == 1) {      //* to number for "covered[]" (number based)               *//
                     covered[0]++;                                           // collected prize
                 }
             }
