@@ -26,5 +26,6 @@ class MAKE_FEASIBLE {
     
     private static boolean isFeasible(int[] gene, int noc){
         int[] covered = new int[noc + 1];
+        return false;
     }
 }
