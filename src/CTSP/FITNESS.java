@@ -22,7 +22,7 @@ class FITNESS {
         }
 
         for (int i = 0; i < popSize; i++) {   // For putting max-fitness, for roulette whel selection
-            Array[i][noc + 1] = (int) max - Array[i][noc];
+            Array[i][noc + 1] = max - Array[i][noc];
 //            System.out.println(popArray[i][noc + 1]); // Debug Only
         }
 
