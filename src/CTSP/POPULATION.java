@@ -51,11 +51,11 @@ class POPULATION {
             for (int k = 3; coverArray[popArray[i][0]][k] != -1; k++) {     //* Filling covered array, k=3 as coverArray starts from 3 *//
                 covered[coverArray[popArray[i][0]][k] + 1]++;               //* coverArray is index based, so +1 to convert            *//
                 if (covered[coverArray[popArray[i][0]][k] + 1] == 1) {      //* to number for "covered[]" (number based)               *//
-                    covered[0]++;                                           // collected prize
+                    covered[0]++;  // collected prize(only increased of first updation of any city), therefore no repeated counting
                 }
             }
 //            System.out.println("Pop1 " + popArray[i][0] + " " + covered[0]);  // Debug only
-            System.out.print(popArray[i][0] + " ");
+            System.out.print(popArray[i][0] + " ");  // Debug Only // Printing Pop
 //            PrintArr_Debug.printarr(covered, noc); // Debug only
 
             int coverMax = (int) Math.ceil(new DIST().maxDist(distArray, noc)); // Max distance of cities, for prize 278 & 279
@@ -90,12 +90,13 @@ class POPULATION {
                 //                      PrintArr_Debug.printarr(covered);
                 //                } // Debug condition for printing populuation with pop no. and prize at end
                 else {
-                    System.out.print(popArray[i][j] + " "); // Debug only
+                    System.out.print(popArray[i][j] + " "); // Debug only // Printing Pop
                 } // Debug only, for printing the population
 
             }
             popArray[i][j] = -1;
-            System.out.println(popArray[i][j]);   // Debug Only
+//            System.out.println(popArray[i][j]);   // Debug Only
+            System.out.println();  // Debug Only // Printing Pop
         }
         return popArray;
     }

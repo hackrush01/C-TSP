@@ -27,5 +27,15 @@ class FITNESS {
         }
 
         return Array;
+    } // End of calculateFitness function
+
+    public static int calcFitness(int[] Array, float[][] distArray) {
+        float fitness = 0;
+        
+        for (int i = 1; Array[i] != -1; i++) {
+            fitness += distArray[Array[i]][Array[i - 1]] * 1000;
+        }
+        
+        return (int) fitness;
     }
 }

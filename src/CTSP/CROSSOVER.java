@@ -40,7 +40,7 @@ class CROSSOVER {
                 parent2 = selectPool[(int) (Math.random() * popSize)][noc + 1]; //Random integer(A) is selected from 0 to popSize
 //              System.out.println(parent2);  // Debug Only                     //and index stored in selecPop@(noc+1) at A is parent2
 
-                //parent 2 not same as parent 1
+                //to make parent 2 not same as parent 1
                 for (; parent2 == bestGene_index;) {
                     parent2 = selectPool[(int) (Math.random() * popSize)][noc + 1];
 //                  System.out.println(parent2);  // Debug Only
@@ -49,7 +49,7 @@ class CROSSOVER {
 //                System.out.println(parent2); // Debug Only
                 // </editor-fold>
                 // Calculating length of parent2 gene for crossover(will be done on the basis of smaller of two parents)
-                // <editor-fold>
+                // <editor-fold defaultstate="collapsed">
                 for (int l = 0; popArray[parent2][l] != -1; l++) {
                     parent2Gene_length = l;
                 }
@@ -148,7 +148,7 @@ class CROSSOVER {
                 parent2 = selectPool[(int) (Math.random() * popSize)][noc + 1];
 //              System.out.println(parent2);  // Debug Only
 
-                //parent 2 not same as parent 1
+                //to make parent 2 not same as parent 1
                 for (; parent2 == parent1;) {
                     parent2 = selectPool[(int) (Math.random() * popSize)][noc + 1];
 //                  System.out.println(parent2);  // Debug Only
@@ -156,8 +156,8 @@ class CROSSOVER {
 
 //                System.out.println(parent1 +" "+parent2); // Debug Only
                 // </editor-fold>
-                // Calculating length of parent2 gene for crossover(will be done on the basis of smaller of two parents)
-                // <editor-fold>
+                // Calculating length of parent 2 & 1 gene for crossover(will be done on the basis of smaller of two parents)
+                // <editor-fold defaultstate="collapsed">
                 for (int l = 0; popArray[parent2][l] != -1; l++) {
                     parent2Gene_length = l;
                 }
@@ -205,6 +205,45 @@ class CROSSOVER {
                 }
                 crossPool[i][crossPoolFillPoint] = -1;
             } else {    // For odd i
+
+                if (startIndex == i) {
+                //<editor-fold defaultstate="collapsed" desc="Selecting parents only if i=startIndex,and odd">
+                    // <editor-fold defaultstate="collapsed" desc="Parent 1 & 2 Selection">
+                    parent1 = selectPool[(int) (Math.random() * popSize)][noc + 1]; //Random parent 2
+                    parent2 = selectPool[(int) (Math.random() * popSize)][noc + 1];
+//              System.out.println(parent2);  // Debug Only
+
+                    //to make parent 2 not same as parent 1
+                    for (; parent2 == parent1;) {
+                        parent2 = selectPool[(int) (Math.random() * popSize)][noc + 1];
+//                  System.out.println(parent2);  // Debug Only
+                    }
+
+//                System.out.println(parent1 +" "+parent2); // Debug Only
+                    // </editor-fold>
+                    // Calculating length of parent 2 & 1 gene for crossover(will be done on the basis of smaller of two parents)
+                    // <editor-fold defaultstate="collapsed">
+                    for (int l = 0; popArray[parent2][l] != -1; l++) {
+                        parent2Gene_length = l;
+                    }
+
+                    for (int l = 0; popArray[parent1][l] != -1; l++) {
+                        parent1Gene_length = l;
+                    }
+
+                    if (parent1Gene_length < parent2Gene_length) {
+                        crossGene_length = parent1Gene_length;
+                    } else {
+                        crossGene_length = parent2Gene_length;
+                    }
+                // </editor-fold>
+
+                    // Random crossover point
+                    crossPoint = (int) (Math.random() * crossGene_length);
+//                System.out.println(crossPoint); // Debug Only
+                    //</editor-fold>
+                }
+
                 int j = 0;
 
                 // Filling the crossPool till the crossPoint with parent2 
