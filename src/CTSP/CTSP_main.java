@@ -9,10 +9,11 @@ public class CTSP_main {
 //        int noc     = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Enter the no. of cities","No. of cities",3,null,null,"280"));
 //        int dist     = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Enter facility cover distance","Distance",3,null,null,"50"));
 //        int popSize     = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Enter population size","Population",3,null,null,"100"));
-//        float crossRate = Float.parseFloat((String) JOptionPane.showInputDialog(null, "Enter the crossover rate", "Crossover Rate", 3, null, null, 0.8));
+//        float mutateRate = Float.parseFloat((String) JOptionPane.showInputDialog(null, "Enter the mutation rate", "Mutation Rate", 3, null, null, 0.03));
         int noc = 280;     //Specific to WORKING PROJECT FILE
         int dist = 50;     //Specific to WORKING PROJECT FILE
-        int popSize = 150;   //Specific to WORKING PROJECT FILE
+        int popSize = 10;   //Specific to WORKING PROJECT FILE
+        float mutateRate = 0.05f;
 
         int[][] coorTable   = new COORDINATE().coorArray(noc);
         float[][] distTable = new DIST().distArray(coorTable, noc);
@@ -58,6 +59,16 @@ public class CTSP_main {
         //System.out.println("");
         //System.out.println(min1+" "+min);
         // </editor-fold>
+        
+        System.out.println();
+        System.out.println("----------------------Mutated Population----------------------");
+        int[][] mutateTable = new MUTATION().mutate(crossTable, mutateRate, popSize);
+        mutateTable         = new FITNESS().calcFitness(mutateTable, distTable, noc, popSize);
+        
+        System.out.println();
+        System.out.println("----------------------2-Opt L.S. Population----------------------");
+        int[][] _2OptTable  = new TWO_OPT().twoOpt(mutateTable, distTable, popSize);
+        _2OptTable          = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
     }
 
 }
