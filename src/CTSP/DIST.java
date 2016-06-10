@@ -14,7 +14,8 @@ class DIST {
                 int y2 = coorTable[j][1];
 
                 float dist = (float) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));  // Distance formula
-                dist = Float.parseFloat(new java.text.DecimalFormat("0.000").format(dist));   // Upto 3 decimal places
+//                dist = Float.parseFloat(new java.text.DecimalFormat("0.000").format(dist));   // Upto 3 decimal places
+                dist = ((int) (dist*1000))/1000f;   // Upto 3 decimal places, the above one takes a lot more time
                 distArray[i][j] = dist;     //  Setting both consecutively
                 distArray[j][i] = dist;     //  -------------"------------
 
