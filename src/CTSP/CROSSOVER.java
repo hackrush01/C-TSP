@@ -12,7 +12,8 @@ class CROSSOVER {
         int parent2 = 0; // Outside of for loop as it will be genrated every 2nd time
         int parent2Gene_length = 0; // Outside of for loop as it will be genrated every 2nd time
         int crossGene_length;
-        int noOfGenes = popSize / 2;  // Change MANUALLY for variation, make similar changes to below function crossRandom
+        int noOfGenes = popSize / 10;  // Change MANUALLY for variation, make similar changes to below function crossRandom
+        // Current is 10%
         // </editor-fold>
 
         // For finding index of the best gene, only from selected genes
@@ -135,10 +136,11 @@ class CROSSOVER {
         int parent2 = 0; // Outside of for loop as it will be genrated every 2nd time
         int parent2Gene_length = 0; // Outside of for loop as it will be genrated every 2nd time
         int crossGene_length = 0;
-        int startIndex = popSize / 2; // (=noOfGenes) From previous function crossBest, change MANUALLY for variation
+        int startIndex = popSize / 10; // (=noOfGenes) From previous function crossBest, change MANUALLY for variation
+        // current is 10,% so in total 20% are crossed
         // </editor-fold>
         // funtion for crossing
-        for (int i = startIndex; i < popSize; i++) {
+        for (int i = startIndex; i < popSize / 5; i++) {
 
             // Creating even numbered children(Some kind of programatically made test tube baby !? :-P)
             if (i % 2 == 0) {
@@ -207,7 +209,7 @@ class CROSSOVER {
             } else {    // For odd i
 
                 if (startIndex == i) {
-                //<editor-fold defaultstate="collapsed" desc="Selecting parents only if i=startIndex,and odd">
+                    //<editor-fold defaultstate="collapsed" desc="Selecting parents only if i=startIndex,and odd">
                     // <editor-fold defaultstate="collapsed" desc="Parent 1 & 2 Selection">
                     parent1 = selectPool[(int) (Math.random() * popSize)][noc + 1]; //Random parent 2
                     parent2 = selectPool[(int) (Math.random() * popSize)][noc + 1];
@@ -274,6 +276,22 @@ class CROSSOVER {
                 crossPool[i][crossPoolFillPoint] = -1;
             }
             System.out.println(); // Debug Only // Printing Pop
+        }
+        return crossPool;
+    } // End of crossRandom Function
+
+    public int[][] fillRestCross(int[][] crossPool, int[][] selectPool, int popSize, int noc) {
+        for (int i = (popSize / 5); i < popSize; i++) {
+            int index = (int) (Math.random() * popSize); // Getting index of gene for putting in crossPool
+            int j = 0;
+            
+            for (; selectPool[index][j] != -1; j++) {
+                crossPool[i][j] = selectPool[index][j];
+                System.out.print(crossPool[i][j] + " ");
+            }
+            
+            crossPool[i][j] = -1;
+            System.out.println();
         }
         return crossPool;
     }
