@@ -14,12 +14,14 @@ public class CTSP_main {
         int noc = 280;     //Specific to WORKING PROJECT FILE
         int dist = 50;     //Specific to WORKING PROJECT FILE
         int popSize = 150;   //Specific to WORKING PROJECT FILE
-        float mutateRate = 0.2f;
+        float mutateRate = 0.1f;
+        int N = popSize / 10; 
+        int gen = 0;
 
         int[][] coorTable = new COORDINATE().coorArray(noc);
         float[][] distTable = new DIST().distArray(coorTable, noc);
 
-//        new WRITE().delFile ();
+        new WRITE().delFile2 ();
 //        new WRITE().writeFi le(distTable, noc);
         int[][] coverTable = new COVER_MATRIX().coverArray(distTable, noc, dist);
 
@@ -29,16 +31,18 @@ public class CTSP_main {
         
         int[] bestGene = bestGene(popTable, popSize, noc);
         int improveCounter = 0;
+        int resets = 0;
 
-        for (; improveCounter < 100; improveCounter++) {
+        for (; improveCounter < 100; improveCounter++, gen++) {
             int bestDist = bestGene[noc];
 
             int[][] selectTable = new SELECTION().select(popSize, noc, popTable);
 
             System.out.println();
             System.out.println("+---------------------Crossover Population---------------------+");
-            int[][] crossTable = new CROSSOVER().crossBest(selectTable, popTable, popSize, noc);  // 50% cross with best, rest random
+            int[][] crossTable = new CROSSOVER().crossBest(selectTable, popTable, popSize, noc);  // 10% cross with best, 10% random
             crossTable = new CROSSOVER().crossRandom(crossTable, popTable, selectTable, popSize, noc);
+            crossTable = new CROSSOVER().fillRestCross(crossTable, selectTable, popSize, noc);    // Rest is filled w/o crossing
             crossTable = new FITNESS().calcFitness(crossTable, distTable, noc, popSize);
 
             System.out.println();
@@ -72,24 +76,41 @@ public class CTSP_main {
 
             System.out.println();
             System.out.println("+---------------------2-Opt L.S. Population---------------------+");
-            int[][] _2OptTable = new TWO_OPT().twoOpt(mutateTable, distTable, popSize);
-            _2OptTable = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
+            int[][] _2OptTable = new TWO_OPT().twoOpt(mutateTable, distTable, popSize, N);  // Only N random genes will be local searched
+//            _2OptTable = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
+            popTable = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
 
             System.out.println();
             System.out.println("+---------------------Surviving Population---------------------+");
-            int[][] survivorTable = new SUR_SELECT().survivor(popTable, _2OptTable);
-            popTable = new FITNESS().calcFitness(survivorTable, distTable, noc, popSize);
-            System.out.println(improveCounter);
+//            int[][] survivorTable = new SUR_SELECT().survivor(popTable, _2OptTable);
+//            popTable = new FITNESS().calcFitness(survivorTable, distTable, noc, popSize);
+            
+            //NOT DOING SURVIVORS SELECION AS THIS RESULTS IN LESS VARIATIONS THEREBY INFITIE LOOP
+            
+            
+            for (int i = 0; i < popSize; i++) {
+                for (int j = 0; popTable[i][j] != -1; j++) {
+                    System.out.print(popTable[i][j] + " ");
+                }
+                
+                System.out.println("         "+ popTable[i][noc]);
+            }
+            
+            WRITE.writeResult(popTable, popSize, noc, gen);
+           
+            System.out.println(gen + "    " + improveCounter);
             
             int[] newBestGene = bestGene(popTable, popSize, noc);
             int newBestDist = newBestGene[noc];
             
             if (newBestDist < bestDist) {
                 improveCounter = 0;
+                resets++;
                 System.arraycopy(newBestGene, 0, bestGene, 0, noc + 2);
             }
 
         }
+        System.out.println("Resets: " + resets);
     } // End of main function
 
     private static int[] bestGene(int[][] Array, int popSize, int noc) {
