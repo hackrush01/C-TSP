@@ -21,11 +21,12 @@ class TWO_OPT {
      * }
      * }
      */
-    public int[][] twoOpt(int[][] _2OptPool, float[][] distArray, int popSize) {
-        for (int pop = 0; pop < popSize; pop++) {
+    public int[][] twoOpt(int[][] _2OptPool, float[][] distArray, int popSize, int N) {
+        for (int pop = 0; pop < N; pop++) {              // N is the of genes to be two opted
 
             int improvCounter = 0;
-            int[] gene = extractGene(_2OptPool, pop, distArray.length); // length of dist Array = noc
+            int index_LocalSearch = (int) (Math.random() * popSize);
+            int[] gene = extractGene(_2OptPool, index_LocalSearch, distArray.length); // length of dist Array = noc
 //            System.out.println(Arrays.toString(gene));
             int last_i = lastGeneIndex(gene);
 
@@ -50,8 +51,8 @@ class TWO_OPT {
                 }
             }
             for (int i = 0; gene[i] != -1; i++) {
-                _2OptPool[pop][i] = gene[i];
-                System.out.print(_2OptPool[pop][i] + " ");
+                _2OptPool[index_LocalSearch][i] = gene[i];
+                System.out.print(_2OptPool[index_LocalSearch][i] + " ");
             }
             System.out.println();
         }

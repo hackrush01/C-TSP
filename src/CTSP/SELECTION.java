@@ -8,7 +8,7 @@ class SELECTION {
         int[][] selectPool = new int[popSize][noc + 2];  // Init selectPool
         long sum_fit = 0;  // sum of max-fitness
 
-        for (int i = 0; i < popSize; i++) {   // Loop for adding max-fitness of 
+        for (int i = 0; i < popSize; i++) {   // Loop for adding max-fitness of all genes
             sum_fit += popArray[i][noc + 1];
         }
 
