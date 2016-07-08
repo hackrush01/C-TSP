@@ -4,8 +4,7 @@ class DIST {
 
     public float[][] distArray(int[][] coorTable, int noc) {
         float[][] distArray = new float[noc][noc];
-        
-        // Distance form all cities to all cities
+
         for (int i = 0; i < noc; i++) {
             int x1 = coorTable[i][0];
             int y1 = coorTable[i][1];
