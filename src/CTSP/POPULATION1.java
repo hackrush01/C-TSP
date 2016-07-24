@@ -52,7 +52,7 @@ public class POPULATION1 {
                 for (int k = 0; k < facility.length; k++) {
                     if (i == k || coveredStatus[k] == 1) {
                         // System.out.println("Continue dropped in "+k);
-                        continue;
+
                     } else {
                         if (facility_facility_dist[i][k] < min) {
                             min = facility_facility_dist[i][k];
@@ -87,7 +87,7 @@ public class POPULATION1 {
 
     int[][] findCoveredCustomer(int[] facility, int[] customers, float[][] facility_cust_dist, float[][] facility_facility_dist) {
         int dist = 50;
-        int[][] coveredCust = new int[facility.length][facility.length];
+        int[][] coveredCust = new int[facility.length][customers.length];
         int counter;
         for (int i = 0; i < facility.length; i++) {
             counter = 0;
@@ -99,9 +99,10 @@ public class POPULATION1 {
             }
             coveredCust[i][counter] = -1;
         }
-        int k = 0;
+        
+        // Debug loop for printing
         for (int i = 0; i < facility.length; i++) {
-            k = 0;
+            int k = 0;
             // System.out.println("The customers covered by "+facility[i]);
             while (coveredCust[i][k] != -1) {
                 //System.out.print(" "+coveredCust[i][k]);

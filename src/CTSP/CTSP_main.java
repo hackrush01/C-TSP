@@ -77,8 +77,13 @@ public class CTSP_main {
             System.out.println();
             System.out.println("+---------------------2-Opt L.S. Population---------------------+");
             int[][] _2OptTable = new TWO_OPT().twoOpt(mutateTable, distTable, popSize, N);  // Only N random genes will be local searched
-//            _2OptTable = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
-            popTable = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
+            _2OptTable = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
+//            popTable = new FITNESS().calcFitness(_2OptTable, distTable, noc, popSize);
+            
+            System.out.println();
+            System.out.println("+---------------------Drop & Add L.S. Population---------------------+");
+            int[][] dropAndAddTable = new DROP_AND_ADD().dropAndAdd(_2OptTable, distTable, coverTable, popSize, N);  // Only N random genes will be local searched
+            popTable = new FITNESS().calcFitness(dropAndAddTable, distTable, noc, popSize);
 
             System.out.println();
             System.out.println("+---------------------Surviving Population---------------------+");
